@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  if userAccess
+      p User access granted
+  
+  - var anyArray = [1, 2, 3]
+  each value in anyArray
+    p= value
+  
+  form(method="post" action="/test/submit")
+    input(type="text", name="userId")
+    button(type="submit") Sign Up
