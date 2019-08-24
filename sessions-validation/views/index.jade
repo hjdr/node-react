@@ -2,14 +2,19 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  if userAccess
-      p User access granted
-  
-  - var anyArray = [1, 2, 3]
-  each value in anyArray
-    p= value
-  
-  form(method="post" action="/test/submit")
-    input(type="text", name="userId")
-    button(type="submit") Sign Up
+
+  if success
+    h2 Successful Validation
+  else
+    if errors
+      ul
+        each error in errors
+          li= error.msg
+    form(method="post" action="/submit")
+      label(for="email") Email:
+      input(type="text", name="email")#email
+      label(for="password") Password:
+      input(type="password", name="password")#password
+      label(for="confirmPassword") Confirm Password:
+      input(type="text", name="confirmPassword")#confirmPassword
+      button(type="submit") Sign Up
